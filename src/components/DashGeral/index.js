@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import GlobalStyle from "./styles/global";
-import Header from "./components/Header";
-import Resume from "./components/Dashboard";
-import Form from "./components/Form";
-import "./App.css";
+import Resume from "../Dashboard";
 
-const App = () => {
+
+const DashGeral = () => {
+
   const data = localStorage.getItem("transactions");
   const [transactionsList, setTransactionsList] = useState(
     data ? JSON.parse(data) : []
@@ -41,18 +39,13 @@ const App = () => {
     localStorage.setItem("transactions", JSON.stringify(newArrayTransactions));
   };
 
-  return (
-    <>
-      <Header />
-      <Resume className="resume" entrada={entrada} saida={saida} total={total} />
-      <Form
-        handleAdd={handleAdd}
-        transactionsList={transactionsList}
-        setTransactionsList={setTransactionsList}
-      />
-      <GlobalStyle />
-    </>
-  );
-};
 
-export default App;
+  return(
+    <>
+    <Resume entrada={entrada} saida={saida} total={total}/>
+    </>
+  )
+
+}
+
+export default DashGeral;

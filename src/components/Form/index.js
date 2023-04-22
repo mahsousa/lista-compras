@@ -1,46 +1,75 @@
-import React, { useState } from 'react'
-import * as C from './style'
+import React, { useState } from "react";
+import List from "../List";
+import * as C from "./style";
 
 
-const Form = () => {
-  const [description, setDescription] = useState("")
-  const [amount, setAmount] = useState("")
-  const [isExpense, setExpense] = useState("")
+const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
+  const [descricao, setDescricao] = useState("");
+  const [quantia, setQuantia] = useState("");
+  const [isDespesa, setDespesa] = useState(false);
 
-  const adcValue = () =>{
-    if(!description || !amount){
-      alert("informe a descrição e o valor:");
+  const generateID = () => Math.round(Math.random() * 1000);
+
+  const handleSave = () => {
+    if (!descricao || !quantia) {
+      alert("Informe a descricaorição e o valor!");
       return;
-    }else if(amount < 1){
-      alert ("o valor tem que ser positivo!");
+    } else if (quantia < 1) {
+      alert("O valor tem que ser positivo!");
       return;
     }
-  };
 
+    const transaction = {
+      id: generateID(),
+      descricao: descricao,
+      quantia: quantia,
+      saida: isDespesa,
+    };
+
+    handleAdd(transaction);
+
+    setDescricao("");
+    setQuantia("");
+  };
 
   return (
     <>
-    <C.Container>
-      <C.InputContent>
-        <C.Label>Descrição:</C.Label>
-      <C.Input value={description} onChange={(e) => setDescription(e.target.value)}/>
-      </C.InputContent>
-
-      <C.InputContent>
-        <C.Label>Valor:</C.Label>
-        <C.Input value={amount} type="number" onChange={(e) => setAmount(e.target.value)}/>
-      </C.InputContent>
-    
-      <C.RadioGroup>
-        <C.Input type="radio" id="group1" defaultChecked name="group1" onChange={() => setExpense(!isExpense)}/>
-        <C.Label htmlFor="group1">Entrada</C.Label>
-        <C.Input type="radio" id="group2" name='group2' onChange={() => setExpense(!isExpense)}/>
-        <C.Label htmlFor="group2">Saida</C.Label>
-      </C.RadioGroup>
-      <C.Button onClick={adcValue}>ADICIONAR</C.Button>
-    </C.Container>
+      <C.Container>
+        <C.InputContent>
+          <C.Label>descriçao</C.Label>
+          <C.Input value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+        </C.InputContent>
+        <C.InputContent>
+          <C.Label>Valor</C.Label>
+          <C.Input
+            value={quantia}
+            type="number"
+            onChange={(e) => setQuantia(e.target.value)}
+          />
+        </C.InputContent>
+        <C.RadioGroup>
+          <C.Input
+            type="radio"
+            id="rIncome"
+            defaultChecked
+            name="group1"
+            onChange={() => setDespesa(!isDespesa)}
+          />
+          <C.Label htmlFor="rIncome">Entrada</C.Label>
+          <C.Input
+            type="radio"
+            id="rDespesas"
+            name="group1"
+            onChange={() => setDespesa(!isDespesa)}
+          />
+          <C.Label htmlFor="rDespesas">Saída</C.Label>
+        </C.RadioGroup>
+        <C.Button onClick={handleSave}>ADICIONAR</C.Button>
+        <C.Button onClick={handleSave}>LIMPAR</C.Button>
+      </C.Container>
+      <List itens={transactionsList} setItens={(setTransactionsList)}/>
     </>
-  )
-}
+  );
+};
 
 export default Form;

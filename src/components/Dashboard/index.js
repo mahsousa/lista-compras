@@ -8,12 +8,12 @@ import{
 } from "react-icons/fa";
 
 
-const Dashboard = () => {
+const Dashboard = ({entrada, saida, total}) => {
   return (
       <C.Container>
-        <DashItem  title="Entradas" Icon={FaRegArrowAltCircleUp} value="1000"/>
-        <DashItem title="Saidas" Icon={FaRegArrowAltCircleDown} value="1000"/>
-        <DashItem title="Total" Icon={FaDollarSign} value="1000"/>
+        <DashItem  title="Total Orçamento" Icon={FaRegArrowAltCircleUp} value={entrada}/>
+        <DashItem title="Total Gasto" Icon={FaRegArrowAltCircleDown} value={saida}/>
+        <DashItem title="Disponivel" Icon={FaDollarSign} value={total}/>
       </C.Container>
   );
 };
