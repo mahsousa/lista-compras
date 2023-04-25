@@ -41,7 +41,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
         </C.InputContent>
         <C.InputContent>
           <C.Label>Valor</C.Label>
-          <C.Input
+          <C.InputValor
             value={quantia}
             type="number"
             onChange={(e) => setQuantia(e.target.value)}
@@ -65,7 +65,6 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
           <C.Label htmlFor="rDespesas">Saída</C.Label>
         </C.RadioGroup>
         <C.Button onClick={handleSave}>ADICIONAR</C.Button>
-        <C.Button onClick={handleSave}>LIMPAR</C.Button>
       </C.Container>
       <List itens={transactionsList} setItens={(setTransactionsList)}/>
     </>

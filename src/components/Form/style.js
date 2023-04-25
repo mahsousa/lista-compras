@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width:1120px;
-    margin: 20px auto;
-    width: 98%;
+    // max-width:1120px;
+    // width: 100%;
     background-color: #fff;
     box-shadow: 0px 0px 5px #ccc;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-    padding: 15px 0px;
     gap: 10px;
+    padding: 10px;
 
     @media (max-width: 750px){
       display:grid;
@@ -30,6 +29,15 @@ export const Input = styled.input`
     padding: 5px 10px;
     font-size: 15px;
     border: 1px solid #ccc;
+`;
+
+export const InputValor = styled.input`
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    max-width: 85px;
 `;
 
 export const RadioGroup = styled.div`

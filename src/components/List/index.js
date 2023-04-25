@@ -10,7 +10,7 @@ const List = ({ itens, setItens}) =>{
   const onDelete = (ID) =>{
       const newArray = itens.filter((transaction) => transaction.id !== ID);
       setItens(newArray);
-      localStorage.setItem("transaction", JSON.stringify(newArray));
+      localStorage.setItem("transactions", JSON.stringify(newArray));
   }
 
 

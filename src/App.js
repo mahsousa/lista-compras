@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
-import Resume from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
 import Form from "./components/Form";
+import Assets from "./components/Assets"
 import "./App.css";
 
 const App = () => {
@@ -44,12 +45,17 @@ const App = () => {
   return (
     <>
       <Header />
-      <Resume className="resume" entrada={entrada} saida={saida} total={total} />
-      <Form
-        handleAdd={handleAdd}
-        transactionsList={transactionsList}
-        setTransactionsList={setTransactionsList}
-      />
+      <div className="Inicio">
+        <Dashboard className="resume" entrada={entrada} saida={saida} total={total} />
+        <div className="Form">
+          <Form
+            handleAdd={handleAdd}
+            transactionsList={transactionsList}
+            setTransactionsList={setTransactionsList}
+          />
+        </div>
+      </div>
+
       <GlobalStyle />
     </>
   );

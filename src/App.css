@@ -1,3 +1,11 @@
-.resume{
-  background: brown !important;
+.Inicio{
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  vertical-align: top;
+}
+
+.Form{
+  padding: 20px;
+  
 }
