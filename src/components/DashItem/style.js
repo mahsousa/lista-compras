@@ -41,9 +41,18 @@ export const Header = styled.header`
 
 export const HeaderTitle = styled.p`
     font-size: 20px;
+    color: #3B5369;
 `;
 
 export const Total = styled.span`
     font-size:30px;
     font-weight:bold;
+    color: #2F77B5;
 `;
+
+export const TotalRed = styled.span`
+    font-size:30px;
+    font-weight:bold;
+    color: red;
+`;
+

@@ -1,6 +1,7 @@
 import React from "react";
 import * as C from "./style";
-import jsPDF from 'jspdf';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PdfLayout from "../PdfLayout"
 
 import {
   AiFillPrinter,
@@ -19,34 +20,26 @@ function Assets() {
 
   }
 
-  function printAllStorage() {
-    let dadosLocalStorage = JSON.parse(localStorage.getItem('transactions'));
-    let elemento = document.createElement('div');
-    let listaHtml = "";
-
-    for (let i = 0; i < dadosLocalStorage.length; i++) {
-      listaHtml += `
-      <p><strong>Descrição:</strong> ${dadosLocalStorage[i].descricao} <strong>Valor:</strong> ${dadosLocalStorage[i].quantia} ${dadosLocalStorage[i].tipo}</p>
-      `;
-    }
-
-    elemento.innerHTML = `
-    <h2>Lista de compras</h2>
-    ${listaHtml}
-  `;
-
-    let pdf = new jsPDF();
-    pdf.fromHTML(elemento);
-    pdf.save('arquivo.pdf');
-
-  }
-
-
   return (
     <>
       <C.Container>
-        <AiFillPrinter onClick={printAllStorage} />
-        <FaTrashAlt onClick={clearAllStorage} />
+        <PDFDownloadLink document={<PdfLayout />} fileName="somename.pdf">
+          {({ loading }) =>
+            loading ? 'Loading document...' : ''
+          }
+          <AiFillPrinter style={{
+            color: "#215581",
+            height: '40px',
+            width: '40px',
+            padding:'5px'
+          }} />
+        </PDFDownloadLink >
+        <FaTrashAlt style={{
+          color: "#215581",
+          height: '40px',
+          width: '30px',
+          padding:'5px'
+        }} onClick={clearAllStorage} />
       </C.Container>
     </>
   )

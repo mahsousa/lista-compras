@@ -29,9 +29,9 @@ const App = () => {
 
     const total = Math.abs(entrada - saida).toFixed(2);
 
-    setEntrada(`R$ ${entrada}`);
-    setSaida(`R$ ${saida}`);
-    setTotal(`${Number(entrada) < Number(saida) ? "-" : ""}R$ ${total}`);
+    setEntrada(`${entrada}`);
+    setSaida(`${saida}`);
+    setTotal(`${Number(entrada) < Number(saida) ? "-" : ""}${total}`);
   }, [transactionsList]);
 
   const handleAdd = (transaction) => {

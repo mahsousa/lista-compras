@@ -9,17 +9,16 @@ import{
 } from "react-icons/fa";
 
 
+
 const Dashboard = ({entrada, saida, total}) => {
+  const totalNum =  parseFloat(total);
   return (
       <C.Container>
-        <DashItem  title="Total Orçamento" Icon={FaRegArrowAltCircleUp} value={entrada}/>
-        <DashItem title="Total Gasto" Icon={FaRegArrowAltCircleDown} value={saida}/>
-        <DashItem title="Disponivel" Icon={FaDollarSign} value={total}/>
-        <Assets
-        
-        />
+        <DashItem title="Total Orçamento"  Icon={FaRegArrowAltCircleUp} iconColor="green" value={entrada}/>
+        <DashItem title="Total Gasto" Icon={FaRegArrowAltCircleDown} iconColor="red" value={saida}/>
+        <DashItem title="Disponivel" Icon={FaDollarSign} value={total} textoRed={ totalNum < 0 ? true : false}/>
+        <Assets/>
       </C.Container>
   );
 };
-
 export default Dashboard;
