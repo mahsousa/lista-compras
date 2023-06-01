@@ -117,12 +117,14 @@ export const PdfLayout = () => {
     }
   }
 
+  let date = new Date();
+  let dataFormatada = ((date.getDate() )) + "." + ((date.getMonth() + 1)) + "." + date.getFullYear(); 
 
   return (
     <Document>
       <Page size="A4" style={styles.body}>
         <Text style={styles.titlePage}>
-          Relação de Gastos
+          Relação de Gastos - {dataFormatada}
         </Text>
 
         <View style={styles.contentTitle}>
