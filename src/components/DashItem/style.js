@@ -9,8 +9,13 @@ export const Container = styled.div`
   margin: 20px;
   padding: 20px;
 
-  @media (max-width:750px){
-    width: 60px;
+  @media(max-width:320px){
+    padding: 15px;
+    margin: 2px;
+    width:100px;
+  }
+
+  @media(max-width:750px){
 
     p{
       font-size: 12px;
@@ -24,6 +29,14 @@ export const Container = styled.div`
       display:none;
     }
   }
+
+  @media (min-width: 481px) and (max-width: 991px){
+    margin: 2px;
+    padding: 10px;
+    justify-content: center;
+  }
+  
+
 `;
 
 export const Header = styled.header`

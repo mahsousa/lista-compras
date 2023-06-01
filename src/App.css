@@ -13,3 +13,19 @@
 .valorNegativo {
   color: red !important;
 }
+
+@media (max-width:320px){
+
+  .Inicio {
+    display: flex;
+    flex-wrap: wrap;
+}
+}
+
+@media (min-width: 481px) and (max-width: 991px){
+
+  .Inicio {
+    display: flex;
+    flex-wrap: wrap;
+}
+}

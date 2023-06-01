@@ -38,6 +38,10 @@ export const InputValor = styled.input`
     font-size: 15px;
     border: 1px solid #ccc;
     max-width: 85px;
+
+    @media (min-width: 320px) and (max-width: 480px){
+        max-width: 100%;
+      }
 `;
 
 export const RadioGroup = styled.div`
@@ -60,3 +64,4 @@ export const Button = styled.button`
     color: white;
     background-color: #215581;
 `;
+

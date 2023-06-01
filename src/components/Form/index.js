@@ -12,7 +12,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
 
   const handleSave = () => {
     if (!descricao || !quantia) {
-      alert("Informe a descricaorição e o valor!");
+      alert("Informe a descrição e o valor!");
       return;
     } else if (quantia < 1) {
       alert("O valor tem que ser positivo!");

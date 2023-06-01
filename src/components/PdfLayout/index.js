@@ -11,12 +11,12 @@ Font.register({
 const styles = StyleSheet.create({
   body: {
     paddingTop: 35,
-    paddingBottom: 65,
     paddingHorizontal: 35,
   },
   titlePage: {
-    fontSize: 24,
+    fontSize: 25,
     padding: 20,
+    marginBottom: 40,
     textAlign: 'center',
     backgroundColor: '#E4E4E4',
     color: '#808080',
@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   contentTitle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 40,
-    padding:5,
+    marginTop: 20,
+    padding: 5,
+    fontSize: 16,
   },
   section: {
-    marginTop: 20,
     fontFamily: 'Poppins',
-    padding:5,
+    padding: 5,
   },
   informacoes: {
     flexDirection: 'row',
@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
 // Create Document Component
 export const PdfLayout = () => {
 
-  
+
   function getdata() {
     return JSON.parse(localStorage.getItem('transactionsList'));
   }
-  
+
 
   function getdata() {
     return JSON.parse(localStorage.getItem('transactions'));
@@ -64,32 +64,68 @@ export const PdfLayout = () => {
           <Text style={styles.line}>{row.descricao}</Text>
         </View>
         <View style={styles.infoTitulo}>
-        <Text style={styles.line}>{row.quantia}</Text>
-          </View>
+          <Text style={styles.line}>{row.saida ? '-' : '+'}{row.quantia.toString().replace('.',',')}</Text>
+        </View>
         <View style={styles.infoTitulo}>
-        <Text style={styles.line}>{row.saida ? 'Despesa' : 'Novo Orçamento'}</Text>
+          <Text style={styles.line}>{row.saida ? 'Despesa' : 'Novo Orçamento'}</Text>
         </View>
       </Document>
     )
   }
 
+  function renderRowTotais(totalOrcamento, totalGasto, saldoDisponivel) {
+    return (
+      <Document style={styles.informacoes}>
+        <View style={styles.infoTitulo}>
+          <Text style={styles.line}>R${totalOrcamento.toFixed(2).toString().replace('.',',')}</Text>
+        </View>
+        <View style={styles.infoTitulo}>
+          <Text style={styles.line}>R${totalGasto.toFixed(2).toString().replace('.',',')}</Text>
+        </View>
+        <View style={styles.infoTitulo}>
+          <Text style={styles.line}>R${saldoDisponivel.toFixed(2).toString().replace('.',',')}</Text>
+        </View>
+      </Document>
+    )
+  }
+
+  function prepararSessaoTotais(data){
+    let totalOrcamento = 0, totalGasto = 0, saldoDisponivel = 0;
+    for(let i = 0; i < data.length; i++){
+      if(data[i].saida){
+        totalGasto += parseFloat(data[i].quantia);
+      }
+      else{
+        totalOrcamento += parseFloat(data[i].quantia);
+      }
+    }
+    saldoDisponivel = totalOrcamento - totalGasto;
+
+    rowsTotais.push(renderRowTotais(totalOrcamento, totalGasto, saldoDisponivel));
+
+  }
+
   let rows = [];
+  let rowsTotais = [];
   let data = getdata();
 
-  if (data != null) 
+  if (data != null) {
+    prepararSessaoTotais(data);
 
     for (let i = 0; i < data.length; i++) {
       rows.push(renderRow(data[i]));
+    }
   }
+
 
   return (
     <Document>
       <Page size="A4" style={styles.body}>
-      <Text style={styles.titlePage}>
+        <Text style={styles.titlePage}>
           Relação de Gastos
         </Text>
 
-      <View style={styles.contentTitle}>
+        <View style={styles.contentTitle}>
           <View style={styles.infoTitulo}>
             <Text style={styles.line}>Total Orçamento:</Text>
           </View>
@@ -101,11 +137,11 @@ export const PdfLayout = () => {
           </View>
         </View>
         <View style={styles.section}>
-            {rows}
+          {rowsTotais}
         </View>
 
 
-        
+
         <View style={styles.contentTitle}>
           <View style={styles.infoTitulo}>
             <Text style={styles.line}>Descrição:</Text>
@@ -118,7 +154,7 @@ export const PdfLayout = () => {
           </View>
         </View>
         <View style={styles.section}>
-            {rows}
+          {rows}
         </View>
       </Page>
     </Document>
