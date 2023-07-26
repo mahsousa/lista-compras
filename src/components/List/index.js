@@ -13,8 +13,6 @@ const List = ({ itens, setItens}) =>{
       localStorage.setItem("transactions", JSON.stringify(newArray));
   }
 
-
-
     return(
       <C.Table>
         <C.Thead>

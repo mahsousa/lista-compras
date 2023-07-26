@@ -20,7 +20,7 @@ const ListItem = ({item, onDelete}) => {
         )}
       </C.Td>
       <C.Td alignCenter>
-        <FaTrash onClick={() => onDelete(item.id)}/>
+        <FaTrash data-testid={`delete-button-${item.id}`} onClick={() => onDelete(item.id)}/>
       </C.Td>
     </C.Tr>
   )

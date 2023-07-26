@@ -1,4 +1,8 @@
 import renderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+
+
 import Dashboard from '.';
 
 jest.mock("@react-pdf/renderer", () => {
@@ -39,8 +43,10 @@ jest.mock("@react-pdf/renderer", () => {
 });
 
 
-it('renders the component correctly', () => {
+it('renders the component value correctly', () => {
   const component = renderer.create(<Dashboard entrada="10" saida="10" total="10" />);
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import List from "../List";
 import * as C from "./style";
 
@@ -33,15 +33,15 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
   };
 
   return (
-    <>
+    <React.Fragment key="form-fragment">
       <C.Container>
         <C.InputContent>
-          <C.Label>Descriçao</C.Label>
-          <C.Input value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+          <C.Label>Descrição</C.Label>
+          <C.Input id="descricao" data-testid="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
         </C.InputContent>
         <C.InputContent>
           <C.Label>Valor</C.Label>
-          <C.InputValor
+          <C.InputValor id="valor" data-testid="valor"
             value={quantia}
             type="number"
             onChange={(e) => setQuantia(e.target.value)}
@@ -53,6 +53,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
             id="rIncome"
             defaultChecked
             name="group1"
+            data-testid="entrada"
             onChange={() => setDespesa(!isDespesa)}
           />
           <C.Label htmlFor="rIncome">Entrada</C.Label>
@@ -60,14 +61,15 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
             type="radio"
             id="rDespesas"
             name="group1"
+            data-testid="saida"
             onChange={() => setDespesa(!isDespesa)}
           />
-          <C.Label htmlFor="rDespesas">Saída</C.Label>
+          <C.Label id="saida" htmlFor="rDespesas">Saída</C.Label>
         </C.RadioGroup>
         <C.Button onClick={handleSave}>ADICIONAR</C.Button>
       </C.Container>
       <List itens={transactionsList} setItens={(setTransactionsList)}/>
-    </>
+    </React.Fragment>
   );
 };
 

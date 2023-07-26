@@ -17,7 +17,7 @@ const Dashboard = ({entrada, saida, total}) => {
         <DashItem title="Total Orçamento"  Icon={FaRegArrowAltCircleUp} iconColor="green" value={entrada}/>
         <DashItem title="Total Gasto" Icon={FaRegArrowAltCircleDown} iconColor="red" value={saida}/>
         <DashItem title="Disponivel" Icon={FaDollarSign} value={total} textoRed={ totalNum < 0 ? true : false}/>
-        <Assets/>
+        <Assets key="assets"/>
       </C.Container>
   );
 };
