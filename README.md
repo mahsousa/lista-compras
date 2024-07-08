@@ -4,6 +4,7 @@
 Projeto desenvolvido em React.Js, Styled Components e integrando a funcionalidade React-PDF. Com base sólida em testes unitários, este projeto permite definir um saldo inicial, calcular os gastos da lista de compras e oferece a conveniência de gerar PDFs detalhados.
 
 Tecnologias Utilizadas:
+
 Jest
 
 React.Js
