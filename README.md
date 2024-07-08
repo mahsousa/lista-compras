@@ -5,9 +5,13 @@ Projeto desenvolvido em React.Js, Styled Components e integrando a funcionalidad
 
 Tecnologias Utilizadas:
 Jest
+
 React.Js
+
 Javascript
+
 React.PDF
+
 Styled Components
 
 # RODAR OS COMANDOS NO TERMINAL
