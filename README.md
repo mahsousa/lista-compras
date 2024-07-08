@@ -16,9 +16,11 @@ React.PDF
 Styled Components
 
 # RODAR OS COMANDOS NO TERMINAL
+
 npm install
 
 # CERTIFICAR-SE DE TER O NODE.JS INSTALADO
 USE O CODIGO NO TERMINAL
+
 npm run dev - Ambiente de desenvolvimento
 
